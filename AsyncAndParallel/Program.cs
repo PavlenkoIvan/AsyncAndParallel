@@ -15,8 +15,12 @@ namespace AsyncAndParallel
             Console.WriteLine("Let start!");
             var folderPath = @"C:\Music\MegMayers";
             var fileList = Directory.EnumerateFiles(folderPath).ToList();
-            //new Launcher().AsyncFilesRead(fileList).Wait();
+            new Launcher().SynchFilesRead(fileList);
+            Console.ReadLine();
+            new Launcher().AsyncFilesRead(fileList).GetAwaiter().GetResult();
+            Console.ReadLine();
             new Launcher().ParallelFilesRead(fileList);
+          
             Console.ReadLine();
         }
     }
@@ -35,6 +39,22 @@ namespace AsyncAndParallel
             foreach (var t in tasks)
             {
                 var r = await t.ConfigureAwait(false);
+                Console.WriteLine(r.ThreadId);
+                Console.WriteLine(r.ActionMessage);
+                Console.WriteLine("__________________________");
+            }
+            timer.Stop();
+            Console.WriteLine($"Finished, Time: {timer.Elapsed}");
+        }
+
+        public void SynchFilesRead(List<string> filesPaths)
+        {
+            var timer = Stopwatch.StartNew();
+            var synch = new SyncExample();
+           
+            foreach (var path in filesPaths)
+            {
+                var r = synch.ReedThisFile(path);
                 Console.WriteLine(r.ThreadId);
                 Console.WriteLine(r.ActionMessage);
                 Console.WriteLine("__________________________");

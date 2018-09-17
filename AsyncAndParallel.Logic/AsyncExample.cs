@@ -12,10 +12,11 @@ namespace AsyncAndParallel
         public async Task<TheResponse> ReedThisFile(string filePath)
         {
             var response = new TheResponse();
-            response.ThreadId = $" CurrentThread  {Thread.CurrentThread.ManagedThreadId}, {filePath}";
+            response.ThreadId = $" CurrentThread  {Thread.CurrentThread.ManagedThreadId}, {filePath} thread after";
             using (var data = File.OpenText(filePath))
             {
                 var str = await data.ReadToEndAsync();
+                response.ThreadId += Thread.CurrentThread.ManagedThreadId;
                 response.ActionMessage = ActionMessageHelper.ActionResult(str);
             }
             return response;

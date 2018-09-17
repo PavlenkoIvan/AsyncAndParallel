@@ -2,3 +2,12 @@
 /AsyncAndParallel/bin/Debug
 /AsyncAndParallel.Logic/obj/Debug
 /AsyncAndParallel/obj/Debug
+/AsyncAndParallel.Web/bin
+/AsyncAndParallel.Web/obj/Debug
+/AsyncAndParallel.Logic/bin/Release
+/AsyncAndParallel.Logic/obj/Release
+/.vs/AsyncAndParallel/v15
+/AsyncAndParallel/bin/Release
+/packages
+/AsyncAndParallel/obj/Release
+/AsyncAndParallel.Web/obj/Release
